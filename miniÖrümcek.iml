@@ -1,0 +1,148 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNmk1eRf6dELR8pawHYsO9x",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/esrasucu/miniOrumcek/blob/main/mini%C3%96r%C3%BCmcek.iml\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import requests\n",
+        "from bs4 import BeautifulSoup\n",
+        "\n",
+        "def web_örücü(url):\n",
+        "  \"\"\"\n",
+        "  Belirli bir URL'den veri toplayan basit bir web örümceği.\n",
+        "\n",
+        "  Args:\n",
+        "    url: Verilerin toplanacağı URL.\n",
+        "\n",
+        "  Returns:\n",
+        "    Sayfanın başlığı ve tüm bağlantıların bir listesi.\n",
+        "  \"\"\"\n",
+        "  try:\n",
+        "    response = requests.get(url)\n",
+        "    response.raise_for_status()  # HTTP hatalarını kontrol et\n",
+        "\n",
+        "    soup = BeautifulSoup(response.content, \"html.parser\")\n",
+        "\n",
+        "    sayfa_başlığı = soup.title.string if soup.title else \"Başlık Bulunamadı\"\n",
+        "    bağlantılar = [bağlantı.get(\"href\") for bağlantı in soup.find_all(\"a\")]\n",
+        "\n",
+        "    return sayfa_başlığı, bağlantılar\n",
+        "\n",
+        "  except requests.exceptions.RequestException as e:\n",
+        "    print(f\"İstek hatası: {e}\")\n",
+        "    return None, None\n",
+        "\n",
+        "# Kullanım örneği\n",
+        "url = \"https://corbadatuzunolsun.org/\"\n",
+        "başlık, bağlantılar = web_örücü(url)\n",
+        "\n",
+        "if başlık:\n",
+        "  print(f\"Sayfa Başlığı: {başlık}\")\n",
+        "  print(\"Bağlantılar:\")\n",
+        "  for bağlantı in bağlantılar:\n",
+        "    print(bağlantı)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "z0AHd_I0YUTX",
+        "outputId": "7c54136c-2e06-4735-9ded-07ca00d7e778"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sayfa Başlığı: Çorbada Tuzun Olsun Derneği\n",
+            "Bağlantılar:\n",
+            "https://www.facebook.com/corbadatznolsun\n",
+            "https://www.x.com/corbadatznolsun\n",
+            "https://www.instagram.com/corbadatznolsun\n",
+            "https://www.linkedin.com/company/corbadatznolsun\n",
+            "https://www.youtube.com/@corbadatznolsun\n",
+            "mailto:ofis@corbadatuzunolsun.org\n",
+            "index.html\n",
+            "#\n",
+            "None\n",
+            "hikayemiz.html\n",
+            "misyonumuz.html\n",
+            "kurullar.html\n",
+            "organizasyonsemasi.html\n",
+            "basindacotun.html\n",
+            "None\n",
+            "beyannameler.html\n",
+            "icmevzuat.html\n",
+            "kurumsal_kimlik.html\n",
+            "basinsunumlari.html\n",
+            "raporlar.html\n",
+            "duyuru.html\n",
+            "bizdenhaberler.html\n",
+            "bagis_yap.html\n",
+            "gonullu-ol.html\n",
+            "https://www.instagram.com/p/CyN3vNFocbC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "gonullu-ol.html\n",
+            "https://www.instagram.com/p/CyN4H8aoXwJ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "https://www.instagram.com/p/CyN3vNFocbC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "https://www.instagram.com/p/CyN3vNFocbC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "https://www.instagram.com/p/CyN3vNFocbC/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "404.html\n",
+            "https://www.instagram.com/p/CyN4H8aoXwJ\n",
+            "https://www.instagram.com/p/B1PIKmeHXrD/?utm_source=ig_web_copy_link\n",
+            "https://www.instagram.com/p/B5A1EyVnF3M/?utm_source=ig_web_copy_link\n",
+            "https://www.instagram.com/p/B3M1lIHH8jG/?utm_medium=copy_link\n",
+            "https://www.instagram.com/p/CwQLbjloqsQ/?utm_source=ig_web_copy_link\n",
+            "service-details.html\n",
+            "service-details.html\n",
+            "service-details.html\n",
+            "https://www.instagram.com/p/C_--QUJownK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "https://www.instagram.com/p/C92oBpMoR1v/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "https://www.instagram.com/p/C8epBZzoLGl/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==\n",
+            "index.html\n",
+            "https://acikacik.org/stk/sivil-toplum-kurulusu/corbada-tuzun-olsun-dernegi\n",
+            "https://www.facebook.com/corbadatznolsun\n",
+            "https://www.x.com/corbadatznolsun\n",
+            "https://www.instagram.com/corbadatznolsun\n",
+            "https://www.linkedin.com/company/corbadatznolsun\n",
+            "https://www.youtube.com//corbadatznolsun\n",
+            "index.html\n",
+            "hikayemiz.html\n",
+            "kurullar.html\n",
+            "404.html\n",
+            "bagis_yap.html\n",
+            "https://fonzip.com/cotun/e-kartlar\n",
+            "gonullu-ol.html\n",
+            "duyuru.html\n",
+            "www.corbadatuzunlsun.org\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
