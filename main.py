@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyNa9v9vvV/LHZyAmFBb0deM",
+      "authorship_tag": "ABX9TyPOKqeQvXjnmjj1kbDvsncq",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -28,6 +28,11 @@
     },
     {
       "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "75pw_I8U1sPt"
+      },
+      "outputs": [],
       "source": [
         "import time\n",
         "from dataURL import DataURL\n",
@@ -36,52 +41,37 @@
         "useDataURL = DataURL()\n",
         "useGetURL = GetURL()\n",
         "\n",
-        "print(\"-: Merhaba mini örümceğe hoş geldiniz!:-\")\n",
-        "print(\"|------------------------------|\")\n",
-        "print(\"\")\n",
+        "print(\"-:Merhabalar mini örümceğe hoş geldiniz! :-\")\n",
+        "print(\"|-----------------------------------------|\")\n",
+        "isim = input(\"Lütfen isminizi giriniz: \")\n",
+        "print(\"Merhaba!\" '\\n' + isim + '\\n' \"Ben mini örümcek sana nasıl yardımcı olabilirim?\" + \"\\n\")\n",
+        "print(\" \")\n",
         "time.sleep(2)\n",
         "\n",
-        "while true:\n",
-        "  print(\"menü:0)Çıkış 1)URL Listele2)URL Ekle 3)Örümcek gönder 4)Sonuçları Listele 5\")\n",
-        "  menuSecim = int( input(\"Tercihiniz:\"))\n",
-        "  if menuSecim == 0:\n",
-        "    print(\"Mini örümcek kapatılıyor...\")\n",
-        "    time.sleep(1)\n",
-        "    break\n",
-        "elif menuSecim == 1:\n",
-        "  useDataURL.dataRead()\n",
-        "elif menuSecim == 2:\n",
-        "  useDataURL.dataWrite()\n",
-        "elif menuSecim == 3:\n",
-        "  useGetURL.getWeb()\n",
-        "elif menuSecim == 4:\n",
-        "  useGetURL.getList()\n",
+        "while True:\n",
+        "    print(\"Lütfen menü numarasını rakam şeklinde giriniz!\")\n",
+        "    print(\"MENÜ: '\\n' 0)Çıkış '\\n' 1)URL listele '\\n' 2)URL ekle '\\n' 3)Örümcek gönder '\\n' 4)Sonuçları listele '\\n'\")\n",
+        "    print(\"Lütfen menü numarasını rakam şeklinde giriniz!\")\n",
+        "    menuSecim = (input(\"Seçiminiz: \"))\n",
+        "    if menuSecim.isdigit():\n",
+        "        menuSecim = int(menuSecim)\n",
+        "        if menuSecim == 0:\n",
+        "            print(\"Mini örümcek kapatılıyor...\")\n",
+        "            time.sleep(1)\n",
+        "            break\n",
+        "        elif menuSecim == 1:\n",
+        "            useDataURL.dataRead()\n",
+        "        elif menuSecim == 2:\n",
+        "            useDataURL.dataWrite()\n",
+        "        elif menuSecim == 3:\n",
+        "            useGetURL.getWeb()\n",
+        "        elif menuSecim == 4:\n",
+        "            useGetURL.getList()\n",
         "\n",
-        "else:\n",
-        "  print(\"Lütfen menü numarasına 0 ile 4 arası rakam giriniz.\")\n",
-        "  print(\"Yeniden menüye yönlendiriliyorsunuz bekleyin!...\")\n",
-        "  time.sleep(2)\n",
-        "\n"
-      ],
-      "metadata": {
-        "colab": {
-          "base_uri": "https://localhost:8080/",
-          "height": 106
-        },
-        "collapsed": true,
-        "id": "iEthM8rExOrg",
-        "outputId": "8d036d90-6a1f-4508-d376-8f60aa222399"
-      },
-      "execution_count": null,
-      "outputs": [
-        {
-          "output_type": "error",
-          "ename": "SyntaxError",
-          "evalue": "invalid syntax (<ipython-input-5-1767d6ba8bdc>, line 20)",
-          "traceback": [
-            "\u001b[0;36m  File \u001b[0;32m\"<ipython-input-5-1767d6ba8bdc>\"\u001b[0;36m, line \u001b[0;32m20\u001b[0m\n\u001b[0;31m    elif menuSecim == 1:\u001b[0m\n\u001b[0m    ^\u001b[0m\n\u001b[0;31mSyntaxError\u001b[0m\u001b[0;31m:\u001b[0m invalid syntax\n"
-          ]
-        }
+        "    else:\n",
+        "        print(\"Lütfen menü numarasını 0 ile 4 arasında rakam şeklinde giriniz!\")\n",
+        "        print(\"Yeniden menüye yönlendiriliyorsunuz.Lütfen bekleyiniz...\")\n",
+        "        time.sleep(2)"
       ]
     }
   ]
